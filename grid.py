@@ -53,3 +53,30 @@ class Grid:
 
     def size(self):
         return self.rows * self.cols
+
+    def print(self):
+        output = "+" + "---+" * self.cols + "\n"
+
+        for row in self:
+            top = "|"
+            bottom = "+"
+
+            for cell in row:
+                body = "   "
+                east_boundary = "|"
+                if cell.isLinked(cell.east):
+                    east_boundary = " "
+
+                top += body + east_boundary
+
+                south_boundary = "---"
+                if cell.isLinked(cell.south):
+                    south_boundary = "   "
+
+                corner = "+"
+                bottom += south_boundary + corner
+
+            output += top + "\n"
+            output += bottom + "\n"
+
+        print(output)

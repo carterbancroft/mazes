@@ -1,21 +1,10 @@
 from grid import Grid
+from binary_tree import build_maze
 
-rows = 3
-cols = 3
+rows = 8
+cols = 8
 newGrid = Grid(rows, cols)
 
+build_maze(newGrid)
 
-for cell in newGrid.each_cell():
-    print(cell)
-
-cell = newGrid[0, 0]
-cell.link(cell.south)
-cell.link(cell.east)
-print(cell.isLinked(cell.south))
-cell.unlink(cell.south)
-print(len(cell.links))
-print(cell.isLinked(cell.south))
-print(cell.isLinked(cell.east))
-#print(len(cell.neighbors()))
-
-print(newGrid.random_cell())
+newGrid.print()
