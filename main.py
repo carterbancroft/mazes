@@ -1,8 +1,12 @@
 from grid import Grid
 
-rows = 2
-cols = 2
+rows = 3
+cols = 3
 newGrid = Grid(rows, cols)
+
+
+for cell in newGrid.each_cell():
+    print(cell)
 
 cell = newGrid[0, 0]
 cell.link(cell.south)

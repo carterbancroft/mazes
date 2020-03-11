@@ -11,6 +11,25 @@ class Grid:
         self._prepare_grid()
         self._configure_cells()
 
+    def __getitem__(self, tup):
+        row, col = tup
+
+        if row < 0 or row >= self.rows:
+            return None
+        if col < 0 or col >= self.cols:
+            return None
+
+        return self._grid[row][col]
+
+    def __iter__(self):
+        for row in range(self.rows):
+            yield self._grid[row]
+
+    def each_cell(self):
+        for row in self:
+            for cell in row:
+                yield cell
+
     def _prepare_grid(self):
         for row in range(self.rows):
             for col in range(self.cols):
@@ -25,16 +44,6 @@ class Grid:
                 cell.south = self[row + 1, col]
                 cell.west = self[row, col - 1]
                 cell.east = self[row, col + 1]
-
-    def __getitem__(self, tup):
-        row, col = tup
-
-        if row < 0 or row >= self.rows:
-            return None
-        if col < 0 or col >= self.cols:
-            return None
-
-        return self._grid[row][col]
 
     def random_cell(self):
         row = random.randrange(self.rows - 1)
