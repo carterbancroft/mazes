@@ -62,6 +62,9 @@ class Grid:
             bottom = "+"
 
             for cell in row:
+                if not cell:
+                    cell = Cell(-1, -1)
+
                 body = "   "
                 east_boundary = "|"
                 if cell.isLinked(cell.east):
